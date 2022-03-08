@@ -1,13 +1,18 @@
 import csv
 from urllib.parse import urlparse
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import Options
 
 class InstaScrapper(object):
 
     def __init__(self):
+        options = Options()
+        options.headless = True
         self.url = 'https://www.bbc.com/'
-        self.driver = webdriver.Chrome(executable_path="/home/paras/Downloads/chromedriver_linux64/chromedriver")
+        self.driver = webdriver.Chrome(
+            executable_path="/home/paras/Downloads/chromedriver_linux64/chromedriver",
+            options=options) 
+
         self.driver.get(self.url)
         self.driver.implicitly_wait(15)
         self.urls = set()
